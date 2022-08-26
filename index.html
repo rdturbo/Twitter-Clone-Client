@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Twitter</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link 
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="style.css">
+        <!-- Font Awesome -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        rel="stylesheet"
+        />
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        rel="stylesheet"
+        />
+        <!-- MDB -->
+        <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css"
+        rel="stylesheet"
+        />
+        <!-- Compiled and minified JavaScript -->
+        <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"
+        ></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.2.1/jsencrypt.min.js" async></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+    <body onload = "loginload()">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Container wrapper -->
+            <div class="container">
+            <!-- Navbar brand -->
+            <a class="navbar-brand me-2" href="#">
+                <img
+                src="https://www.pngkey.com/png/full/2-27646_twitter-logo-png-transparent-background-logo-twitter-png.png"
+                height="16"
+                alt="MDB Logo"
+                loading="lazy"
+                style="margin-top: -1px;"
+                />
+            </a>
+            <large style="margin-right: 70em;">Twitter</large>
+        
+            <!-- Toggle button -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+        
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarButtonsExample">
+                <!-- Left links -->
+                
+                <!-- Left links -->
+        
+                <div class="d-flex align-items-center">
+                
+                    <button type="button" class="btn btn-primary me-3" name="action" id="logouthead" onclick="logout()">
+                        Logout
+                    </button>
+                </div>
+            </div>
+            <!-- Collapsible wrapper -->
+            </div>
+            <!-- Container wrapper -->
+        </nav>        
+        <br>
+        <div id="main" class="container">
+            <div class="reg-container" id="reglogin">
+                <div class="form-container sign-up-container" id="register">
+                    <form action="#">
+                        <h1>Create Account</h1>
+                        <span>Start your Twitter Journey Today</span>
+                        <input type="text" placeholder="UserName" id="runame" name="fname" />
+                        <input type="password" placeholder="Password" id="rpass" name="pwd" />
+                        <button type="submit" name="action" onclick="register()">Sign Up</button>
+                    </form>
+                </div>
+                <div class="form-container sign-in-container" id="login">
+                    <form action="#">
+                        <h1>Sign in</h1>
+                        <!-- <span>or use your account</span> -->
+                        <input type="text" placeholder="UserName" id="luname" name="fname"/>
+                        <input type="password" placeholder="Password" id="lpass" name="pwd" />
+                        <!-- <a href="#">Forgot your password?</a> -->
+                        <button type="submit" name="action" onclick="login()">Sign In</button>
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <h1>Welcome Back!</h1>
+                            <p>Nice seeing you again. Tweet your thoughts, follow your friends and connect to world</p>
+                            <button class="ghost" id="signIn">Sign In</button>
+                        </div>
+                        <div class="overlay-panel overlay-right">
+                            <h1>Hello, There!</h1>
+                            <p>Join in</p>
+                            <button class="ghost" id="signUp">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div id="full">
+                <table>
+                <tbody>
+                    <div class="container">
+                        <tr class="row">
+                            <td class="col-sm">
+                                <div id = "divtweet">
+                                    <div class="form-outline">
+                                        <input type="text" id="tweet" name="tweet" class="form-control" />
+                                        <label class="form-label" for="text">Tweet</label>
+                                        <br>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-rounded" name="tweet" onclick="tweet()">Post Tweet</button>
+                                    <button type="button" class="btn btn-primary btn-rounded" name="retweet" onclick="retweet()">ReTweet</button>
+                                </div>
+                            </td>
+                            <td class="col-sm">
+                                <div id = "divfollower">
+                                    <div class="form-outline">
+                                        <input type="text" id="follower" name="follower" class="form-control" />
+                                        <label class="form-label" for="follower">Follow</label>
+                                        <br>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-rounded" name="follow" onclick="follow()">Follow New User</button>
+                                </div>
+                            </td>
+                            <td class="col-sm">
+                                <div>
+                                    <div class="form-outline">
+                                        <input type="text" id="hashtag" name="hashtag" class="form-control" />
+                                        <label class="form-label" for="hashtag">Search Hashtag</label>
+                                        <br>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-rounded" name="gethashtags" onclick="gethashtags()">Fetch HashTags</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </div>
+                    <div class="container">
+                        <tr class="row">
+                            <td class="col-sm">
+                                <div id = "GetTweets">                                   
+                                    <div class="form-outline">
+                                        <br>
+                                        <textarea class="form-control" id="gettweets" name="gettweets" disabled rows="11" cols="50" style="height: 50%;"></textarea>
+                                        <label class="form-label" for="gettweets">Tweets:</label>
+                                    </div>
+                                    <br><br> 
+                                    <button type="button" class="btn btn-primary btn-rounded" name="gettweets" onclick="gettweets()">Fetch Tweets</button>
+                                </div>
+                            </td>
+                            <td class="col-sm">
+                                <div id = "GetMentions">
+                                    <div class="form-outline">
+                                        <br>
+                                        <textarea class="form-control" id="getmentions" name="getmentions" disabled rows="11" cols="50" style="height: 50%;"></textarea>
+                                        <label class="form-label" for="getmentions">Tweets where you are mentioned:</label>
+                                    </div>
+                                    <br><br> 
+                                    <button type="button" class="btn btn-primary btn-rounded" name="getmentions" onclick="getmentions()">Fetch Mentions</button>
+                                </div>
+                            </td>
+                            <td class="col-sm">
+                                <div id = "GetHashTags">
+                                    <div class="form-outline">
+                                        <br>
+                                        <textarea class="form-control" id="gethashtags" name="gethashtags" disabled rows="11" cols="50" style="height: 50%;"></textarea>
+                                        <label class="form-label" for="gethashtags">Tweets related to searched hasthtag:</label>
+                                    </div>
+                                    <br><br> 
+                                </div>
+                            </td>
+                        </tr>
+                    </div>
+                </tbody>
+                </table>
+                <div id="output">
+                    <h3>Twitter Feed</h3>
+                </div>
+            </div>
+            
+        </div>
+        <script src ="main.js"></script>
+    </body>
+</html>
